@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/orderhistory.css">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ----------main content----------- -->
+
+
+    <div id="completedOrders" class="tableDiv">
+        <label>Order History</label>
+        <br>
+        <table id="completedOrdersTable">
+            <tbody>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Placed on</th>
+                    <th>Pickup time</th>
+                    <th>Completion time</th>
+                    <th>Order type</th>
+                    <th>Customer name</th>
+                    <th>Customer phone</th>
+                    <th>Customer address</th>
+                    <th>Cutlery</th>
+                    <th>Payment</th>
+                    <th>Prepaid</th>
+                    <th>Subtotal</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Order</th>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>292ACEAF</td>
+                    <td>Delivered</td>
+                    <td>07:17 28 June 2021</td>
+                    <td>ASAP</td>
+                    <td>N/A</td>
+                    <td>Delivery</td>
+                    <td>Mohamed Jaffer</td>
+                    <td>+973 00000000</td>
+                    <td>Office: 415
+                        Floor: 4
+                        Building: 9182
+                        Road: 456
+                        Area: Saar
+                        Notes: Please do not ring the bell</td>
+                    <td>NO</td>
+                    <td>Cash</td>
+                    <td>NO</td>
+                    <td>BD 9.400</td>
+                    <td>BD 0.000</td>
+                    <td>BD 10.700</td>
+                    <td><button name="292ACEAF" class="btn" onclick="viewOrder(this.name)">View order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AB95F2EF</td>
+                    <td>Cancelled</td>
+                    <td>07:15 28 June 2021</td>
+                    <td>ASAP</td>
+                    <td>N/A</td>
+                    <td>Delivery</td>
+                    <td>Mohamed Jaffer</td>
+                    <td>+973 00000000</td>
+                    <td>Office: 415
+                        Floor: 4
+                        Building: 9182
+                        Road: 456
+                        Area: Saar
+                        Notes: Please do not ring the bell
+                    </td>
+                    <td>NO</td>
+                    <td>Cash</td>
+                    <td>NO</td>
+                    <td>BD 18.800</td>
+                    <td>BD 0.000</td>
+                    <td>BD 20.100</td>
+                    <td>
+                        <button name="AB95F2EF" class="btn" onclick="viewOrder(this.name)">View order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>709FE7E6</td>
+                    <td>Cancelled</td>
+                    <td>01:05 22 June 2021</td>
+                    <td>ASAP</td>
+                    <td>N/A</td>
+                    <td>Delivery</td>
+                    <td>Mohamed Jaffer</td>
+                    <td>+973 00000000</td>
+                    <td>House: Ryt
+                        Road: Rut
+                        Block: 608
+                        Area: Arad Notes: none
+                    </td>
+                    <td>NO</td>
+                    <td>Cash</td>
+                    <td>NO</td>
+                    <td>BD 11.200</td>
+                    <td>BD 0.000</td>
+                    <td>BD 12.500</td>
+                    <td>
+                        <button name="709FE7E6" class="btn" onclick="viewOrder(this.name)">View order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>715B4D77</td>
+                    <td>Cancelled</td>
+                    <td>22:26 21 June 2021</td>
+                    <td>ASAP</td>
+                    <td>N/A</td>
+                    <td>Delivery</td>
+                    <td>Mohamed Jaffer</td>
+                    <td>+973 00000000</td>
+                    <td>House: 3106
+                        Road: 452
+                        Block: 604
+                        Area: Sitra Al Qaryah Notes: none
+                    </td>
+                    <td>NO</td>
+                    <td>Cash</td>
+                    <td>NO</td>
+                    <td>BD 47.000</td>
+                    <td>BD 0.000</td>
+                    <td>BD 47.700</td>
+                    <td>
+                        <button name="715B4D77" class="btn" onclick="viewOrder(this.name)">View order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2B1B670F</td>
+                    <td>Cancelled</td>
+                    <td>21:51 21 June 2021</td>
+                    <td>ASAP</td>
+                    <td>N/A</td>
+                    <td>Delivery</td>
+                    <td>Mohamed Jaffer</td>
+                    <td>+973 00000000</td>
+                    <td>House: Ryt
+                        Road: Rut
+                        Block: 608
+                        Area: Arad Notes: none
+                    </td>
+                    <td>NO</td>
+                    <td>Cash</td>
+                    <td>NO</td>
+                    <td>BD 26.800</td>
+                    <td>BD 0.000</td>
+                    <td>BD 28.100</td>
+                    <td>
+                        <button class="btn" name="2B1B670F" onclick="viewOrder(this.name)">View order</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="addItem-popup" id="myForm">
+
+        <!--START-->
+
+        <div class="form-container">
+            <button type="button" class="close" onclick="closeForm()">x</button>
+
+            <div id="recieptDiv">
+                <div id="addressDiv">
+                    House: Ryt
+                    Road: Rut
+                    Block: 608
+                    Area: Arad
+                    Notes: none
+                </div>
+
+                <br><br><br>
+
+
+
+                <div id="itemsDiv">
+                    <div class="item">
+                        <label class="quantity">2</label>
+                        <label class="title">check22</label>
+                        <label class="subTitle">hola1 (BD 0.100) | hola2 (BD 0.100) | Spicy (BD 0.200)</label>
+                        <label class="itemNotes">Notes: </label>
+                        <label class="itemNotes">Promo: none</label>
+                        <label class="detail">BD 18.800</label>
+                        <br>
+                    </div>
+                    <div class="item">
+                        <label class="quantity">1</label>
+                        <label class="title">dfghjkl ( C.A.H )</label>
+                        <label class="subTitle"></label>
+                        <label class="itemNotes">Notes: </label>
+                        <label class="itemNotes">Promo: none</label>
+                        <label class="detail">BD 8.000</label>
+                        <br>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div id="totalDiv">
+                    <label class="title">Cart subtotal: </label>
+                    <label class="detail">BD 26.800</label>
+                    <br>
+                    <label class="title">Cart discount: </label>
+                    <label class="detail">- BD 0.000</label>
+                    <br>
+                    <label class="title">Cart total</label>
+                    <label class="detail">BD 26.800</label>
+                    <br>
+                    <label class="title">Delivery: </label>
+                    <label class="detail">+ BD 1.300</label>
+                    <br>
+                    <label class="title">Total: </label>
+                    <label class="detail">BD 28.100</label>
+                </div>
+
+
+            </div>
+
+            <br>
+            <button class="btn" onclick='printReceipt()'>Print</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="script/orderhistory.js"></script>
+    <script src="script/navbar.js"></script>
+</body>
+
+</html>

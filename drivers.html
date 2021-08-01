@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <link rel="stylesheet" href="css/drivers.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    
+    <center>
+        <button id="addDriverBtn" onclick="openPrompt()">Add driver</button>
+    </center>
+
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="closeIt" id="span" type="button" onclick="Cancel()">&times;</button>
+
+            <label>Driver First Name:</label>
+            <input type="text" placeholder="First Name" id="fName" required>
+            <br><br>
+            <label>Driver Last Name:</label>
+            <input type="text" placeholder="Last Name" id="lName" required>
+            <br><br>
+            <label>Driver Number: +973 </label>
+            <input type="number" id="phone" required maxlength="10">
+            <br><br>
+            <label for="email">Driver Email:</label>
+            <input type="email" id="email" required maxlength="40" onkeyup="emailCheck()"> <br>
+            <label for="vbemail">Verify Email:</label>
+            <input type="email" id="vemail" required maxlength="40" onkeyup="emailCheck()">
+            <span id='emessage'></span><br>
+            <label for="pass">Driver password:</label>
+            <input type="password" id="pass" name="pass" required minlength="8" maxlength="35"
+                onkeyup="passCheck()"><br>
+            <label for="vpass">Verify Password:</label>
+            <input type="password" id="vpass" name="vpass" required minlength="8" maxlength="35" onkeyup="passCheck()">
+            <span id='message'></span><br><br>
+
+            <label for="2FA">Driver two-factor authentication code (6 digits):</label>
+            <input type="number" id="2FA" required minlength="6" maxlength="6" onkeyup="FA2Check()"><br>
+            <label for="v2FA">Verify two-factor authentication code:</label>
+            <input type="number" id="v2FA" required minlength="6" maxlength="6" onkeyup="FA2Check()">
+            <span id='2FAmessage'></span><br>
+            <br>
+
+            <label for='dob'>Date of birth (dd/mm/yyyy):</label>
+            <input id='dob' type='date'>
+
+            <br>
+
+            <label>Vehicle Type:</label>
+            <select id='vType'>
+                <option value='Motorbike'>Motorbike</option>
+                <option value='Car'>Car</option>
+                <option value='Mini-Bus'>Mini-Bus</option>
+            </select>
+            <br><br>
+
+            <label>Vehicle Brand:</label>
+            <input type="text" placeholder="Brand" id="vBrand" required>
+            <br><br>
+
+            <label>Vehicle Model:</label>
+            <input type="text" placeholder="Model" id="vModel" required>
+            <br><br>
+
+            <label>Vehicle Plate Number:</label>
+            <input type="text" placeholder="Plate Number" id="vPlate" required>
+            <br><br>
+
+
+
+            <div id='driverSMSCode'>
+                <label for='SMS'>OTP:</label>
+                <input type='number' id='SMS'>
+            </div>
+            <br>
+            <center><button type='button' class="btn" onclick="checkInfo()">Submit</button></center>
+
+
+
+        </div>
+
+    </div>
+
+    <div id="pendingDriverRequests" class="tableDiv">
+        <label>My Drivers</label>
+
+        <table id="pendingDriversTable">
+            <tbody>
+                <tr>
+                    <th>Driver Name</th>
+                    <th>Driver ID</th>
+                    <th>Driver Email</th>
+                    <th>Driver Phone</th>
+                    <th>Requested on</th>
+                    <th>Status</th>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>testing last</td>
+                    <td>14fca0fc</td>
+                    <td>g7@hotmail.com</td>
+                    <td>+973 99999999</td>
+                    <td>2021-06-23</td>
+                    <td>approved</td>
+                </tr>
+                <tr>
+                    <td>Mohd S</td>
+                    <td>2ec9e731</td>
+                    <td>driver@volo.com</td>
+                    <td>+973 33333333</td>
+                    <td>2021-06-17</td>
+                    <td>pending</td>
+                </tr>
+                <tr>
+                    <td>driver 2 sq</td>
+                    <td>bff57189</td>
+                    <td>driver2@volo.com</td>
+                    <td>+973 0000000</td>
+                    <td>2021-06-17</td>
+                    <td>approved</td>
+                </tr>
+                <tr>
+                    <td>driver 3 sw</td>
+                    <td>da8ceb33</td>
+                    <td>Driver3@volo.com</td>
+                    <td>+973 0000000</td>
+                    <td>2021-06-17</td>
+                    <td>approved</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+    <script src="script/navbar.js"></script>
+    <script src="script/drivers.js"></script>
+</body>
+
+</html>

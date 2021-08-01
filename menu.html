@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ----------main content----------- -->
+
+    <div class="menu">
+        <form class="search-form" action="">
+            <input type="text" name="search">
+            <button type="submit"><img src="images/search.svg" alt=""></button>
+
+        </form>
+
+
+        <center>
+            <button onclick="document.getElementById('id01').style.display='block'" class="add-button">Add
+                Item</button>
+            <button onclick="document.getElementById('id02').style.display='block'" class="add-button">Add
+                category</button>
+        </center>
+        <div id="id02" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+
+                    <!-- --------------- -->
+
+                    <form class="form-container" onsubmit="return false" id='category-form'>
+                        <div class="popup-title">
+                            <p>Add new category</p>
+                            <button type="button" class="close"
+                                onclick="document.getElementById('id02').style.display='none'">&#10006;</button>
+
+                        </div>
+
+                        <label for="english">Category Name (English):</label>
+                        <input type="text" placeholder="Category Name" name="english" id="english" required>
+                        <br><br>
+
+                        <label for="native">Category Name (Arabic):</label>
+                        <input type="text" placeholder="Name in Arabic" name="native" id="native" required>
+                        <br>
+                        <br>
+                        <label for='rank'>Order:</label>
+                        <select id='rank' name='rank'>
+                            <option value='1' id="first">First</option>
+                        </select>
+                        <br><br>
+
+                        <button type="submit" class="btn" onclick="addCategory()">Add</button>
+                    </form>
+
+                    <!-- ------------------ -->
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <!-- ----------------------- -->
+
+                    <form id="item-form" enctype="multipart/form-data" class="form-container">
+                        <div class="popup-title">
+                            <p>Add new Item</p>
+                            <button type="button" class="close"
+                                onclick="document.getElementById('id01').style.display='none'">&#10006;</button>
+                        </div>
+                        <div id="itemDiv">
+
+                            <label for="english">Item Name (English):</label>
+                            <input type="text" placeholder="Item name" name="Item[1][0]" id='Item[1][0]' required>
+                            <br><br>
+
+                            <label for="native">Item Name (Arabic):</label>
+                            <input type="text" placeholder="Name in Arabic" name="Item[1][1]" id='Item[1][1]' required>
+                            <br><br>
+                            <label for="price">Price (VAT Inclusive):</label>
+                            <input type="number" name="Item[1][2]" id='Item[1][2]' step="0.1" required>
+                            <label for="price">BHD</label>
+                            <br><br>
+                            <label for="categoryAssign">Assign to category:</label>
+                            <select id="Item[1][3]" name="Item[1][3]">
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                            </select><br><br>
+                            <label for="engDescription">Description (English):</label>
+                            <textarea id='Item[1][4]' name="Item[1][4]" class='textarea'></textarea> <br><br>
+                            <label for="natDescription">Description (Arabic):</label>
+                            <textarea id='Item[1][5]' name="Item[1][5]" class='textarea'></textarea> <br><br>
+                            <label for="prep">Prep time:</label>
+                            <input type="number" name="Item[1][6]" id='Item[1][6]' step="0.01" required>
+                            <label for="prep">mins</label>
+                            <br><br>
+                            <label for='Item[1][7]'>Item size</label>
+                            <select id='Item[1][7]' name='Item[1][7]'>
+                                <option value='S'>Burger Box</option>
+                                <option value='M'>Tissue Box</option>
+                                <option value='L'>Pizza Box</option>
+                                <option value='XL'>Office Box</option>
+
+                            </select>
+                            <br><br>
+                            <label for="img">Image: </label>
+                            <input type="file" id="pic" name="pic" accept="image/*">
+                            <br><br>
+                            <div id="PassedAddOnDiv">
+
+                            </div>
+                            <br><br>
+                            <button type='button' class='' onclick="addOns()">+ Add-Ons</button>
+                            <!-- </div> -->
+                            <br>
+                        </div>
+
+                        <button type='button' class='btn' onclick="submitItem()">Add Item</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- -------------------------- -->
+        <!-- ---------------------------------
+                    --------------------------------------------- -->
+
+
+
+        <div class="addItem-popup" id="COptions">
+            <form onsubmit="return false" class="form-container" id='EditCategoryForm'>
+                <p>Edit Category:</p>
+                <button type="button" class="close" onclick="closeCOptions()">x</button>
+                <label for="english">Category Name (English):</label>
+                <input type="text" placeholder="Category Name" name="CatEnglish" id="CatEng" required>
+                <br><br>
+
+                <label for="native">Category Name (Arabic):</label>
+                <input type="text" placeholder="Name in Arabic" name="CatNative" id="CatNat" required>
+                <input type="hidden" value="" name="CID" id="CID">
+                <br><br>
+                <label for='rank'>Order:</label>
+                <select id='EditRank' name='rank'>
+                    <option value='1' id="first">First</option>
+                </select>
+                <input type='hidden' id='catCurrentRank' value=''>
+                <br><br>
+                <br><br>
+                <button type="submit" class="btn" onclick="editCat()">Confirm Changes</button>
+                <button type="button" class="btnD" onclick="openPrompt()" id="myBtn">Delete</button>
+            </form>
+        </div>
+
+
+
+        <div class="addItem-popup" id="IOptions">
+            <form onsubmit="return false" class="form-container" id='EditItemForm'>
+                <p>Edit Item:</p>
+                <button type="button" class="close" onclick="closeIOptions()">x</button>
+                <br>
+                <div id="EditItemDiv">
+                    <div id="EditItem">
+                        <label for="EditItem[1][0]">Item Name (English):</label>
+                        <input type="text" placeholder="Item name" name="EditItem[1][0]" id='EditItem[1][0]' required>
+                        <br><br>
+
+                        <label for="EditItem[1][1]">Item Name (Arabic):</label>
+                        <input type="text" placeholder="Name in Arabic" name="EditItem[1][1]" id='EditItem[1][1]'
+                            required>
+                        <br><br>
+                        <label for="price">Price (VAT Exclusive):</label>
+                        <input type="number" name="EditItem[1][2]" id='EditItem[1][2]' step="0.001" required>
+                        <label for="price" class="currency">BHD</label>
+                        <br><br>
+                        <label for="categoryAssign">Assign to category:</label>
+                        <select id="EditItem[1][3]" name="EditItem[1][3]">
+                        </select> <br><br>
+                        <label for="engDescription">Description (English):</label>
+                        <textarea id='EditItem[1][4]' name="EditItem[1][4]" class='textarea'></textarea> <br><br>
+                        <label for="natDescription">Description (Arabic):</label>
+                        <textarea id='EditItem[1][5]' name="EditItem[1][5]" class='textarea'></textarea> <br><br>
+                        <label for="prep">Prep time:</label>
+                        <input type="number" name="EditItem[1][6]" id='EditItem[1][6]' step="0.01" required>
+                        <label for="prep">mins</label>
+                        <input type='hidden' name='EditItem[1][7]' id='EditItem[1][7]' value=''>
+                        <input type='hidden' name='EditItem[1][8]' id='EditItem[1][8]' value=''>
+                        <br><br>
+                        <label for='EditItem[1][9]'>Item size</label>
+                        <select id='EditItem[1][9]' name='EditItem[1][9]'>
+                            <option value='S'>Burger Box</option>
+                            <option value='M'>Tissue Box</option>
+                            <option value='L'>Pizza Box</option>
+                            <option value='XL'>Office Box</option>
+                        </select>
+                        <br><br>
+
+                        <div id="EditPassedAddOnDiv">
+
+                        </div>
+                        <br><br>
+                        <button type='button' class='' onclick='EditAddOn()'>+ Add-Ons</button>
+                    </div>
+                    <br>
+                </div>
+                <button type="button" class="btn" onclick="EditedItem()">Confirm</button>
+                <button type="button" class="btnD" onclick="DeleteItem()" id="myBtn2">Delete</button>
+            </form>
+        </div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <button class="closeIt" id="span" type="button" onclick="Cancel()">&times;</button>
+                <label for="MoveTo">Please select a category to move the Items to:</label>
+                <select id="MoveTo"></select>
+                <br><br>
+                <button type="submit" onclick="deleteCategory()">Confirm</button>
+            </div>
+
+        </div>
+
+        <div id="addOns" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+
+
+
+
+                    <form class="addOnForm" id="addOnForm">
+                        <button type="button" class="close"
+                            onclick="document.getElementById('addOns').style.display='none'">&#10006;</button>
+                </div>
+                <div id="AddOnDiv">
+                    <br>
+                    <!--  -->
+                    <div class="AddOns" id="10d21a93x">
+
+                        <div class="search">
+                            <label id="326ac0e7d">one</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="one" id="326ac0e7">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="search">
+                            <label id="a0295a28d">two</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="two" id="a0295a28">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="search">
+                            <label id="c1506c55d">three</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="three" id="c1506c55">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="search">
+                            <label id="326ac0e7d">one</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="one" id="326ac0e7">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="search">
+                            <label id="a0295a28d">two</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="two" id="a0295a28">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="search">
+                            <label id="c1506c55d">three</label>
+                            <input type="checkbox" class="addOncheckbox 10d21a93" name="three" id="c1506c55">
+                        </div>
+                    </div>
+                    <br>
+                    <!--  -->
+
+                </div>
+
+
+                <br><br>
+                <button type="button" class="btn" onclick="PassAddOns()" id="myBt4">Confirm</button>
+
+                </form>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="EditAddOns" class="addOn-popup">
+        <button type="button" class="close" onclick="closeEditAddOns()">x</button>
+        <form class="addOnForm" id="EditaddOnForm">
+            <div id='EditAddOnsDiv'>
+
+                <div id="10d21a93f" class="search">
+                    <label id="10d21a93i">holaaa99</label>
+                    <input type="checkbox" class="checkboxCat" id="10d21a93" name="10d21a93"
+                        onclick="clickAll(this.name, this.id)">
+                </div>
+                <div class="AddOns" id="10d21a93x">
+                    <br><br>
+                    <div class="search">
+                        <label id="326ac0e7d">fghjk</label>
+                        <input type="checkbox" class="addOncheckbox 10d21a93" name="fghjk" id="326ac0e7">
+                    </div>
+                    <br><br>
+                    <div class="search">
+                        <label id="a0295a28d">FGHJKLKJ</label>
+                        <input type="checkbox" class="addOncheckbox 10d21a93" name="FGHJKLKJ" id="a0295a28">
+                    </div>
+                    <br><br>
+                    <div class="search">
+                        <label id="c1506c55d">ghjk</label>
+                        <input type="checkbox" class="addOncheckbox 10d21a93" name="ghjk" id="c1506c55">
+                    </div>
+                </div>
+
+                <br>
+
+                <div id="14067432f" class="search">
+                    <label id="14067432i">hola</label>
+                    <input type="checkbox" class="checkboxCat" id="14067432" name="14067432"
+                        onclick="clickAll(this.name, this.id)">
+                </div>
+                <div class="AddOns" id="14067432x">
+                    <br><br>
+                    <div class="search">
+                        <label id="2a31ff59d">hola1</label>
+                        <input type="checkbox" class="addOncheckbox 14067432" name="hola1" id="2a31ff59">
+                    </div>
+                    <br><br>
+                    <div class="search">
+                        <label id="bb491ff7d">hola2</label>
+                        <input type="checkbox" class="addOncheckbox 14067432" name="hola2" id="bb491ff7">
+                    </div><br><br>
+                    <div class="search">
+                        <label id="d45ab194d">test 1</label>
+                        <input type="checkbox" class="addOncheckbox 14067432" name="test 1" id="d45ab194">
+                    </div><br><br>
+                    <div class="search">
+                        <label id="f42b9908d">hola5</label>
+                        <input type="checkbox" class="addOncheckbox 14067432" name="hola5" id="f42b9908">
+                    </div>
+                </div><br>
+                <div id="99e2ff55f" class="search">
+                    <label id="99e2ff55i">sauces</label>
+                    <input type="checkbox" class="checkboxCat" id="99e2ff55" name="99e2ff55"
+                        onclick="clickAll(this.name, this.id)">
+                </div>
+                <div class="AddOns" id="99e2ff55x"><br><br>
+                    <div class="search">
+                        <label id="0cb3d627d">Lemon and pepper</label>
+                        <input type="checkbox" class="addOncheckbox 99e2ff55" name="Lemon and pepper" id="0cb3d627">
+                    </div><br><br>
+                    <div class="search">
+                        <label id="65fc2f5ad">Spicy</label>
+                        <input type="checkbox" class="addOncheckbox 99e2ff55" name="Spicy" id="65fc2f5a">
+                    </div><br><br>
+                    <div class="search">
+                        <label id="bd768855d">BBQ</label>
+                        <input type="checkbox" class="addOncheckbox 99e2ff55" name="BBQ" id="bd768855">
+                    </div><br><br>
+                    <div class="search">
+                        <label id="c9df4c72d">Ranch</label>
+                        <input type="checkbox" class="addOncheckbox 99e2ff55" name="Ranch" id="c9df4c72">
+                    </div>
+                </div>
+
+            </div>
+            <br><br>
+            <button type="button" class="btn" onclick="PassEditedAddOns()" id="myBtn3">Confirm</button>
+
+        </form>
+    </div>
+
+
+    <div id="categories">
+        <br>
+        <div class="border">
+            <div id="c8f28b5f" class="search">
+                <label id="label0">burger</label>
+
+                <input type="hidden" id="oil" value="oil">
+                <input type="hidden" value="1">
+                <label class="switch" id="switch0">
+                    <input type="checkbox" id="checkbox0" name="c8f28b5f" onclick="availability(this.name, this.id)">
+                    <span class="slider round" id="slider0"></span>
+                </label>
+                <button type="button" id="button0" name="c8f28b5f" class="toggle-btn"
+                    onclick="openCOptions(this.name)">options</button>
+                <button type="button" class="collapsible toggle-btn" onclick="collapse(this.name, this.id)"
+                    name="c8f28b5fi" id="c8f28b5fz">Collapse</button>
+                <hr>
+            </div>
+            <div class="Items" id="c8f28b5fi">
+                <br><br>
+                <div id="1a31755a" class="ItemDiv search">
+                    <table>
+                        <tr valign="center">
+                            <td>
+                                <div class="ItemImg">
+                                    <img src="https://source.unsplash.com/1600x900/?nature,water" class="itemImg"
+                                        id="1a31755aimg">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ItemButtons">
+                                    <input type="hidden" id="9.000" value="tyui" class="1a31755a">
+                                    <input type="hidden" id="8.0" value="lkjhgvc" class="1a31755a">
+                                    <label class="ItemCheckBox" id="check22">check22</label>
+                                    <label class="switch ItemCheckBox" id="AddOnSwitch2">
+                                        <input type="checkbox" id="ItemCheckBox2" name="1a31755a" class="ItemCheckBox"
+                                            onclick="ItemAvailability(this.name, this.id)">
+                                        <span class="slider round" id="AddOnSlider2"></span>
+                                    </label>
+                                    <button type="button" class="itemOptions toggle-btn"
+                                        onclick="openIOptions(this.name)" name="1a31755a"
+                                        id="1a31755abtn">options</button>
+                                    <input type="hidden" value="S">
+                                </div>
+                            </td>
+
+                            <td>
+                                <p id="p2" class="label">dfghjuikl</p>
+                            </td>
+                            <td>
+                                <p class="label">9.000 BHD</p>
+                            </td>
+                            <td>
+                                <p class="label" id="1a31755aRating">N/A</p>
+                            </td>
+
+                        </tr>
+                        <tr valign="center">
+                            <td>
+                                <div class="imgcontainer ItemImg">
+                                    <img src="https://source.unsplash.com/1600x900/?nature,water" class="itemImg"
+                                        id="d3bbe4b1img">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ItemButtons">
+                                    <input type="hidden" id="0.900" value="fghjk" class="d3bbe4b1">
+                                    <input type="hidden" id="16.0" value="cfghjkl;s" class="d3bbe4b1">
+                                    <label class="ItemCheckBox"
+                                        id="Check090betftvt yvyuvyv yttytygtyg tshdb">Check090betftvt
+                                    </label>
+                                    <label class="switch ItemCheckBox" id="AddOnSwitch7">
+                                        <input type="checkbox" id="ItemCheckBox7" name="d3bbe4b1" class="ItemCheckBox"
+                                            onclick="ItemAvailability(this.name, this.id)">
+                                        <span class="slider round" id="AddOnSlider7"></span>
+                                    </label>
+                                    <button type="button" class="itemOptions toggle-btn"
+                                        onclick="openIOptions(this.name)" name="d3bbe4b1"
+                                        id="d3bbe4b1btn">options</button>
+                                    <input type="hidden" value="S">
+                                </div>
+                            </td>
+
+
+                            <td>
+                                <p id="p7" class="label">burger topped with onions.</p>
+                            </td>
+                            <td>
+                                <p class="label">0.900 BHD</p>
+                            </td>
+                            <td>
+                                <p class="label" id="d3bbe4b1Rating">N/A</p>
+                            </td>
+
+
+
+                        </tr>
+                        <tr valign="center">
+                            <td>
+                                <div class="imgcontainer ItemImg">
+                                    <img src="https://source.unsplash.com/1600x900/?nature,water" class="itemImg"
+                                        id="d3bbe4b1img">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ItemButtons">
+                                    <input type="hidden" id="0.900" value="fghjk" class="d3bbe4b1">
+                                    <input type="hidden" id="16.0" value="cfghjkl;s" class="d3bbe4b1">
+                                    <label class="ItemCheckBox" id="Check090betftvt yvyuvyv yttytygtyg tshdb">yttytygtyg
+                                        tshdb</label>
+                                    <label class="switch ItemCheckBox" id="AddOnSwitch7">
+                                        <input type="checkbox" id="ItemCheckBox7" name="d3bbe4b1" class="ItemCheckBox"
+                                            onclick="ItemAvailability(this.name, this.id)">
+                                        <span class="slider round" id="AddOnSlider7"></span>
+                                    </label>
+                                    <button type="button" class="itemOptions toggle-btn"
+                                        onclick="openIOptions(this.name)" name="d3bbe4b1"
+                                        id="d3bbe4b1btn">options</button>
+                                    <input type="hidden" value="S">
+                                </div>
+                            </td>
+
+                            <td>
+                                <p id="p7" class="label">burger topped with onions.</p>
+                            </td>
+                            <td>
+                                <p class="label">0.900 BHD</p>
+                            </td>
+                            <td>
+                                <p class="label" id="d3bbe4b1Rating">N/A</p>
+                            </td>
+                        </tr>
+                        <tr valign="center">
+                            <td>
+                                <div class="imgcontainer ItemImg">
+                                    <img src="https://source.unsplash.com/1600x900/?nature,water" class="itemImg"
+                                        id="e4141d30img">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="ItemButtons">
+                                    <input type="hidden" id="1.100" value="dfgtyuik" class="e4141d30">
+                                    <input type="hidden" id="7.0" value="lkjhgf" class="e4141d30">
+                                    <label class="ItemCheckBox" id="chicken shawarma4">chicken shawarma4</label>
+                                    <label class="switch ItemCheckBox" id="AddOnSwitch8">
+                                        <input type="checkbox" id="ItemCheckBox8" name="e4141d30" class="ItemCheckBox"
+                                            onclick="ItemAvailability(this.name, this.id)">
+                                        <span class="slider round" id="AddOnSlider8"></span>
+                                    </label>
+                                    <button type="button" class="itemOptions toggle-btn"
+                                        onclick="openIOptions(this.name)" name="e4141d30"
+                                        id="e4141d30btn">options</button>
+                                    <input type="hidden" value="S">
+                                </div>
+                            </td>
+
+                            <td>
+                                <p id="p8" class="label">sdfghjkl</p>
+                            </td>
+                            <td>
+                                <p class="label">1.100 BHD</p>
+                            </td>
+                            <td>
+                                <p class="label" id="e4141d30Rating">N/A</p>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--- ---------------------------------------------
+                    ---------------------------------
+                     -->
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+    <script src="script/navbar.js"></script>
+    <script src="script/menu.js"></script>
+</body>
+
+</html>

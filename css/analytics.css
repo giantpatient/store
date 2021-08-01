@@ -1,0 +1,26 @@
+.item {
+  display: block;
+  padding: 0.2rem;
+  height: 4rem;
+  padding-top: 2rem;
+}
+
+#myChart {
+  height: 400px;
+}
+
+#sideChart1 {
+  height: 600px;
+}
+
+#sideChart2 {
+  height: 600px;
+}
+
+.section-2 {
+  width: 85%;
+  overflow: hidden;
+  margin: 30px auto;
+  text-align: center;
+}
+/*# sourceMappingURL=analytics.css.map */

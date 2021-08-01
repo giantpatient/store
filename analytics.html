@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section-2">
+
+
+
+        <div id='barChartDiv'>
+
+            <select onchange="changeChart()" id='barChartSelect'>
+                <option value='topItemsOrders'>Most Ordered Items by Orders</option>
+                <option value='topItems'>Most Ordered Items by Quantity</option>
+                <option value='ordersCount'>Number of orders</option>
+                <option value='ordersSum'>Order Value</option>
+                <option value='topAreas'>Most Ordering Areas</option>
+                <option value='topAreasSum'>Most Ordering Areas by order value</option>
+                <option value='distanceOrderCount'>Number of orders by distance</option>
+                <option value='distanceOrderSum'>Order values by distance</option>
+                <option value='orderSizeCount'>Number of orders by size</option>
+                <option value='orderSizeSum'>Order values by size</option>
+            </select>
+
+            <select onchange='changeChart()' id='barChartTime'>
+
+                <option value='allTime'>All time</option>
+                <option value='week'>Last week</option>
+                <option value='month'>Last month</option>
+                <option value='3months'>3 months</option>
+                <option value='6months'>6 months</option>
+                <option value='year'>Year</option>
+
+            </select>
+
+            <div id='canvasDiv' width="10" height="10">
+
+                <canvas id="myChart"></canvas>
+
+            </div>
+        </div>
+
+
+        <div id='pieChartDiv'>
+
+            <select onchange="changeChart()" id='pieChartSelect'>
+                <option value='deliveryPickupCount'>Number of Delivery and Pickup Orders</option>
+                <option value='deliveryPickupSum'>Delivery and Pickup order values</option>
+                <option value='preorderCount'>Percentage of preorders by order count</option>
+                <option value='preorderSum'>Percentage of preorders by order value</option>
+                <option value='paymentCount'>Payment methods by order count</option>
+                <option value='paymentSum'>Payment methods by order value</option>
+                <option value='cancelledCount'>Percentage of cancelled orders by order count</option>
+                <option value='cancelledSum'>Percentage of cancelled orders by order value</option>
+
+            </select>
+
+            <select onchange='changeChart()' id='pieChartTime'>
+
+                <option value='allTime'>All time</option>
+                <option value='week'>Last week</option>
+                <option value='month'>Last month</option>
+                <option value='3months'>3 months</option>
+                <option value='6months'>6 months</option>
+                <option value='year'>Year</option>
+
+            </select>
+
+            <div id='sideCanvasDiv'>
+
+                <canvas id='sideChart1'></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div id='polarChartDiv'>
+
+
+
+            <select onchange="changeChart()" id='polarChartSelect'>
+
+                <option value='topCustomersCount'>Most ordering customers</option>
+                <option value='topCustomersValue'>Most ordering customers by order value</option>
+                <option value='topAreas'>Most Ordering Areas</option>
+                <option value='topAreasSum'>Most Ordering Areas by order value</option>
+
+            </select>
+
+            <select onchange='changeChart()' id='polarChartTime'>
+
+                <option value='allTime'>All time</option>
+                <option value='week'>Last week</option>
+                <option value='month'>Last month</option>
+                <option value='3months'>3 months</option>
+                <option value='6months'>6 months</option>
+                <option value='year'>Year</option>
+
+            </select>
+
+
+            <div id='sideCanvasDiv2'>
+
+                <canvas id='sideChart2'></canvas>
+
+            </div>
+        </div>
+
+
+        <div id='lineChartDiv'>
+
+
+            <select onchange="changeChart()" id='lineChartSelect'>
+
+                <option value='ordersCount'>Number of orders</option>
+                <option value='ordersSum'>Order value</option>
+                <option value='promoSum'>Promo earnings</option>
+                <option value='promoCount'>Promo Sales count</option>
+
+            </select>
+
+            <select onchange="changeChart()" id='lineChartTime'>
+
+                <option value='allTime'>All time</option>
+                <option value='week'>Last week</option>
+                <option value='month'>Last month</option>
+                <option value='3months'>3 months</option>
+                <option value='6months'>6 months</option>
+                <option value='year'>Year</option>
+
+            </select>
+
+
+            <div id='canvasDiv2'>
+
+                <canvas id="myChart2"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div id='ratingChartDiv'>
+
+            <select onchange="changeChart()" id='ratingChartSelect'>
+                <option value='ratingSummary'>Rating summary</option>
+                <!--<option value='ratingBreakdownPie'>Rating breakdown (Pie chart)</option>-->
+                <option value='overallRatingBreak'>Overall Rating breakdown</option>
+                <option value='packageBreak'>Packaging breakdown</option>
+                <option value='valueBreak'>Value for money breakdown</option>
+                <option value='qualityBreak'>Items quality breakdown</option>
+                <option value='overallRatingBreakPie'>Overall Rating breakdown (Pie chart)</option>
+                <option value='packageBreakPie'>Packaging breakdown (Pie chart)</option>
+                <option value='valueBreakPie'>Value for money breakdown (Pie chart)</option>
+                <option value='qualityBreakPie'>Items quality breakdown (Pie chart)</option>
+                <option value='overallHistory'>Rating history</option>
+                <option value='otherHistory'>Rating components history</option>
+            </select>
+
+            <select onchange='changeChart()' id='ratingChartTime'>
+
+                <option value='allTime'>All time</option>
+                <option value='week'>Last week</option>
+                <option value='month'>Last month</option>
+                <option value='3months'>3 months</option>
+                <option value='6months'>6 months</option>
+                <option value='year'>Year</option>
+
+            </select>
+
+            <div id='canvasRatingDiv' width="10" height="10">
+
+                <canvas id="myRatingChart"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+    <script src="script/navbar.js"></script>
+    <script src="script/analytics.js"></script>
+</body>
+
+</html>

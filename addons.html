@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addons.css">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ----------main content----------- -->
+
+    <div class="section-2">
+        <form class="search-form" action="">
+            <input type="text" name="search">
+            <button type="submit"><img src="images/search.svg" alt=""></button>
+        </form>
+        <br> <br>
+        <center>
+            <button class="add-button" onclick="addAddOn()">Add add-on</button>
+            <button class="add-button" onclick="openForm()">Add add-on category</button>
+        </center>
+
+
+        <br>
+
+        <div class="addItem-popup" id="myForm">
+            <form class="form-container" onsubmit="return false">
+                <p>Add new category:</p>
+                <button type="button" class="close" onclick="closeForm()">x</button>
+                <label for="english">Category Name (English):</label>
+                <input type="text" placeholder="Category Name" name="english" id="english" required>
+                <br><br>
+
+                <label for="native">Category Name (Arabic):</label>
+                <input type="text" placeholder="Name in Arabic" name="native" id="native" required>
+                <br>
+                <br>
+
+                <button type="submit" class="btn" onclick="addCategory()">Add</button>
+            </form>
+        </div>
+
+        <div class="addItem-popup" id="addAddOn">
+            <form onsubmit="return false" class="form-container">
+                <p>Add new add-on:</p>
+                <button type="button" class="close" onclick="closeAddAddOn()">x</button>
+                <br><br>
+                <div id="addOnDiv">
+                    <div>
+                        <label for="english">Add-on Name (English):</label>
+                        <input type="text" placeholder="Add-on name" name="AddOn[1][0]" id='AddOn[1][0]' required>
+                        <br>
+
+                        <label for="native">Add-on Name (Arabic):</label>
+                        <input type="text" placeholder="Name in Arabic" name="AddOn[1][1]" id='AddOn[1][1]' required>
+                        <br>
+                        <label for="price">Price (VAT Exclusive):</label>
+                        <input type="number" name="AddOn[1][2]" id='AddOn[1][2]' step="0.001" required>
+                        <label for="price">BHD</label>
+                        <br><br>
+                        <label for="categoryAssign">Assign to category:</label>
+                        <select id="AddOn[1][3]" name="AddOn[1][3]">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select> <br><br>
+                    </div>
+                    <br>
+                </div>
+                <button type='button' class='plus-btn' onclick='skiddy()'>+</button>
+                <button type='submit' class='btn' onclick="submitAddOn()">Add</button>
+
+            </form>
+        </div>
+
+        <div class="addItem-popup" id="COptions">
+            <form onsubmit="return false" class="form-container">
+                <p>Edit Category:</p><br>
+                <button type="button" class="close" onclick="closeCOptions()">x</button>
+                <label for="english">Category Name (English):</label>
+                <input type="text" placeholder="Category Name" name="CatEnglish" id="CatEng" required>
+                <br><br>
+
+                <label for="native">Category Name (Arabic):</label>
+                <input type="text" placeholder="Name in Arabic" name="CatNative" id="CatNat" required>
+                <input type="hidden" value="" name="CID" id="CID">
+                <br><br>
+                <button type="submit" class="btn" onclick="editCat()">Confirm Changes</button>
+                <button type="button" class="btnD" onclick="openPrompt()" id="myBtn">Delete</button>
+            </form>
+        </div>
+
+        <div class="addItem-popup" id="AOptions">
+            <form onsubmit="return false" class="form-container">
+
+                <p>Edit Add-On:</p>
+                <button type="button" class="close" onclick="closeAOptions()">X</button>
+
+
+                <br>
+                <label for="AEnglish">Add-On Name (English):</label>
+                <input type="text" placeholder="Add-On Name" name="AEnglish" id="AEng" required>
+                <br><br>
+                <label for="ANative">Add-On Name (Arabic):</label>
+                <input type="text" placeholder="Name in Arabic" name="ANative" id="ANat" required>
+                <input type="hidden" value="" name="AID" id="AID">
+                <input type="hidden" value="" id="CATID">
+                <br><br>
+                <label for="price">Price (VAT Exclusive):</label>
+                <input type="number" name="price" id='AddOnPrice' step="0.001" required>
+                <label for="price" class='currency'>BHD</label>
+                <br><br>
+                <label for="AssignCategory">Assign to category:</label>
+                <select id="AssignCategory" name="assign">
+                </select>
+                <button type="submit" class="btn" onclick="EditAddOn()">Confirm</button>
+                <button type="button" class="btnD" onclick="DeleteAddOn()" id="myBtn2">Delete</button>
+            </form>
+        </div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <button class="closeIt" id="span" type="button" onclick="Cancel()">&times;</button>
+                <label for="MoveTo">Please select a category to move the Add-ons to:</label>
+                <select id="MoveTo"></select>
+                <br><br>
+                <button type="submit" onclick="deleteCategory()">Confirm</button>
+            </div>
+
+        </div>
+
+
+        <!-- <div id="categories">
+
+    </div> -->
+        <div id="categories"><br>
+            <div class="search">
+                <label id="label0">lorem title</label><input type="hidden" id="ghjkl" value="ghjkl">
+                <label class="switch" id="switch0"><input type="checkbox" id="checkbox0" name="10d21a93"
+                        onclick="availability(this.name, this.id)"><span class="slider round"
+                        id="slider0"></span></label>
+
+                <button type="button" id="button0" class="opt-btn" name="10d21a93"
+                    onclick="openCOptions(this.name)">options</button>
+                <button type="button" class="collapsible opt-btn" onclick="collapse(this.name, this.id)"
+                    name="10d21a93i" id="10d21a93z">Collapse</button>
+            </div>
+            <div id="10d21a93i" class="table-holder">
+
+                <table>
+                    <tr>
+                        <td>
+                            <label id="326ac0e7i">lorem</label>
+                        </td>
+                        <td>
+                            <label class="switch" id="AddOnSwitch2"><input type="checkbox" name="326ac0e7"
+                                    id="AddOnCheckbox2" onclick="AddOnAvailability(this.name, this.id)"><span
+                                    class="slider round" id="AddOnSlider2"></span></label>
+                        </td>
+                        <td>
+                            <label id="price2">0.10000</label>
+                            <label class="currency">BHD</label>
+                        </td>
+                        <td>
+                            <button type="button" class="opt-btn" id="AddOnButton2" name="326ac0e7"
+                                onclick="openAOptions(this.name)">options</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="326ac0e7i">lorem</label>
+                        </td>
+                        <td>
+                            <label class="switch" id="AddOnSwitch2"><input type="checkbox" name="326ac0e"
+                                    id="AddOnCheckbox2" onclick="AddOnAvailability(this.name, this.id)"><span
+                                    class="slider round" id="AddOnSlider2"></span></label>
+                        </td>
+                        <td>
+                            <label id="price2">0.100</label>
+                            <label class="currency">BHD</label>
+                        </td>
+                        <td>
+                            <button type="button" class="opt-btn" id="AddOnButton2" name="326ac0"
+                                onclick="openAOptions(this.name)">options</button>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label id="326ac0e7i">lorem</label>
+                        </td>
+                        <td>
+                            <label class="switch" id="AddOnSwitch2"><input type="checkbox" name="326ac"
+                                    id="AddOnCheckbox2" onclick="AddOnAvailability(this.name, this.id)"><span
+                                    class="slider round" id="AddOnSlider2"></span></label>
+                        </td>
+                        <td>
+                            <label id="price2">0.100</label>
+                            <label class="currency">BHD</label>
+                        </td>
+                        <td>
+                            <button type="button" class="opt-btn" id="AddOnButton2" name="326a"
+                                onclick="openAOptions(this.name)">options</button>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label id="326ac0e7i">lorem</label>
+                        </td>
+                        <td>
+                            <label class="switch" id="AddOnSwitch2"><input type="checkbox" name="326"
+                                    id="AddOnCheckbox2" onclick="AddOnAvailability(this.name, this.id)"><span
+                                    class="slider round" id="AddOnSlider2"></span></label>
+                        </td>
+                        <td>
+                            <label id="price2">0.100</label>
+                            <label class="currency">BHD</label>
+                        </td>
+                        <td>
+                            <button type="button" class="opt-btn" id="AddOnButton2" name="32"
+                                onclick="openAOptions(this.name)">options</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    <script src="script/navbar.js"></script>
+    <script src="script/addons.js"></script>
+</body>
+
+</html>

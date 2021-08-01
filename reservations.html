@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <link rel="stylesheet" href="css/reservations.css">
+
+    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <center>
+        <button id="settingsBtn" class="top-btn" onclick="openPrompt()" value="off/on">Reservation settings</button>
+    </center>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="closeIt" id="span" type="button" onclick="Cancel()">&times;</button>
+
+            <label>Tables available for reservation:</label>
+            <label id='tableLabel' class="reserveLabels"></label>
+            <input type="number" id='tableNumber' class="reserveInputs">
+
+            <br>
+            <br>
+
+            <label>Maximum guests per table:</label>
+            <label id="maxGuestLabel" class="reserveLabels"></label>
+            <input type="number" id="maxGuests" class="reserveInputs">
+            <br><br>
+
+            <label>Maximum stay in minutes:</label>
+            <label id="maxStayLabel" class="reserveLabels"></label>
+            <input type="number" id="maxStay" class="reserveInputs">
+            <br><br>
+
+            <label>Reservation interval in minutes:</label>
+            <label id="intervalLabel" class="reserveLabels"></label>
+            <select id="interval" class="reserveInputs">
+                <option value='15'>15</option>
+                <option value='30'>30</option>
+                <option value='60'>60</option>
+            </select>
+            <br><br>
+
+            <label>Minimum notice for reservations in minutes:</label>
+            <label id="minNoticeLabel" class="reserveLabels"></label>
+            <select id='minNotice' name='minNotice' class="reserveInputs">
+                <option value='15'>15</option>
+                <option value='30'>30</option>
+                <option value='45'>45</option>
+                <option value='60'>60</option>
+                <option value='75'>75</option>
+                <option value='90'>90</option>
+                <option value='120'>120</option>
+                <option value='150'>150</option>
+                <option value='180'>180</option>
+                <option value='210'>210</option>
+                <option value='240'>240</option>
+                <option value='270'>270</option>
+                <option value='300'>300</option>
+
+            </select>
+            <br><br>
+
+            <button type='button' class="yesBtn" id='changeTableBtn' name='edit'
+                onclick='ShowTableField(this.name)'>Edit</button>
+
+            <button type='button' class="yesBtn" id='viewCalendarBtn' onclick='showCalendar()'>Show Calendar</button>
+
+            <br>
+            <br>
+
+
+            <button type='button' id='confirmTableBtn' onclick='updateTableNumber()'>Confirm</button>
+
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <!--<br><br><br><br>-->
+
+    <div id='reserveRequests' class='tableDiv'>
+        <label>Reservation requests</label>
+        <label></label>
+        <div class="table">
+            <table id="reserveRequestTable">
+                <tbody>
+                    <tr>
+                        <th>Reservation Date</th>
+                        <th>Reservation Day</th>
+                        <th>Reservation Time</th>
+                        <th>Guest Name</th>
+                        <th>Guests</th>
+                        <th>Phone</th>
+                        <th>Notes</th>
+                        <th>Requested on</th>
+                        <th>Reject / Accept</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>2021-07-14</td>
+                        <td>Wednesday</td>
+                        <td>8:00 am (08:00)</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>5</td>
+                        <td>+973 39100358</td>
+                        <td>none</td>
+                        <td>2021-07-14 02:35:10</td>
+                        <td><button name="bb6420f7" class="pendingAction"
+                                onclick="rejectReservation(this.name)">x</button><label class="pendingAction"> /
+                            </label><button name="bb6420f7" class="pendingAction"
+                                onclick="acceptReservation(this.name)">✓</button></td>
+                    </tr>
+                    <tr>
+                        <td>2021-07-15</td>
+                        <td>Thursday</td>
+                        <td>10:00 am (10:00)</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>5</td>
+                        <td>+973 39100358</td>
+                        <td>none</td>
+                        <td>2021-07-14 02:35:35</td>
+                        <td><button name="0cd3d080" class="pendingAction"
+                                onclick="rejectReservation(this.name)">x</button><label class="pendingAction"> /
+                            </label><button name="0cd3d080" class="pendingAction"
+                                onclick="acceptReservation(this.name)">✓</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!--<br><br><br><br>-->
+
+    <div id='todayReservations' class='tableDiv'>
+        <label>Today's Reservations</label>
+        <label></label>
+
+        <div class="table">
+
+
+            <table id="todayReserveTable">
+                <tbody>
+                    <tr>
+                        <th>Reservation Date</th>
+                        <th>Reservation Day</th>
+                        <th>Reservation Time</th>
+                        <th>Guest Name</th>
+                        <th>Guests</th>
+                        <th>Phone</th>
+                        <th>Notes</th>
+                        <th>Requested on</th>
+                        <th>Status</th>
+                        <th>Cancel / Done</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>2021-07-14</td>
+                        <td>Wednesday</td>
+                        <td>8:00 am (08:00)</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>5</td>
+                        <td>+973 39100358</td>
+                        <td>none</td>
+                        <td>2021-07-14 02:35:10</td>
+                        <td>upcoming</td>
+                        <td><button name="bb6420f7" class="pendingAction"
+                                onclick="cancelReservation(this.name)">x</button><label class="pendingAction"> /
+                            </label><button name="bb6420f7" class="pendingAction"
+                                onclick="finishReservation(this.name)">✓</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    <!--<br><br><br><br>-->
+    <div id='upcomingReservations' class='tableDiv'>
+
+        <label>Upcoming Reservations</label>
+        <label>N/A</label>
+
+        <div class="table">
+            <table id="upcomingReserveTable">
+                <tbody>
+                    <tr>
+                        <th>Reservation Date</th>
+                        <th>Reservation Day</th>
+                        <th>Reservation Time</th>
+                        <th>Guest Name</th>
+                        <th>Guests</th>
+                        <th>Phone</th>
+                        <th>Notes</th>
+                        <th>Requested on</th>
+                        <th>Status</th>
+                        <th>Cancel / Done</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>2021-07-20</td>
+                        <td>Tuesday</td>
+                        <td>1:30 am (01:30)</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>5</td>
+                        <td>+973 39100358</td>
+                        <td>none</td>
+                        <td>2021-07-14 03:18:17</td>
+                        <td>upcoming</td>
+                        <td><button name="c1946796" class="pendingAction"
+                                onclick="cancelReservation(this.name)">x</button><label class="pendingAction"> /
+                            </label><button name="c1946796" class="pendingAction"
+                                onclick="finishReservation(this.name)">✓</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+    </div>
+
+
+    <!-- Calender Here -->
+    <div class="dateContainer modal" id='dateContainer'>
+
+        <div class="container">
+            <button class="closeCalendar" id="span" type="button" onclick="closeCalendar()">&times;</button>
+
+            <div class="eventMenu">
+                <div class="eventHeader">
+
+                    <h1 id='eventTitle'>Day Events:</h1>
+                    <br>
+                    <p id="selectedDate">Fri 29 Jan, 2020</p>
+
+
+                </div>
+
+                <div class="eventSlots" id='eventSlots'>
+                    <div class="slot">
+                        <br>
+                        <label class="detailLabel">8:00 am (08:00)</label>
+                        <br><br>
+                        <label class="detailLabel">Mohamed Jaffer</label>
+                        <br>
+                        <label class="detailLabel">5 Guests</label>
+                        <br>
+                        <label class="detailLabel">+973 0000000</label>
+                        <br><br>
+                        <label class="infoTitleLabel">Notes:</label>
+                        <br><br>
+
+                        <label class="detailLabel">none</label>
+                        <br><br><br>
+                        <label class="infoTitleLabel">Requested on:</label>
+                        <label class="detailLabel">02:35:10 2021-07-14</label>
+                        <br><br>
+                        <label class="infoTitleLabel">Status:</label>
+                        <label class="detailLabel approved">Approved</label>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar">
+                <div class="month">
+                    <i class='fas fa-angle-left prev'></i>
+                    <div class="date">
+                        <h1 id="dateMonth"></h1>
+                        <p id="dateFullDay"></p>
+                    </div>
+                    <i class="fas fa-angle-right next"></i>
+                </div>
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="days">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div id="main">
+        <div id="overlay"></div>
+        <div id="popup">
+            <h3>Alert</h3>
+            <p id='popUpMsg'>Are you sure?</p>
+
+            <div class="button-holder two-button">
+                <button name='' class="yesBtn" id='yesBtn' onclick='confirmCancelReserve(this.name)'>Yes</button>
+                <button class="yesBtn" onclick='hidePopUp()'>No</button>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+    <script src="script/navbar.js"></script>
+
+    <script src="script/partnerreserve.js" type="text/javascript"></script>
+    <script>
+        load();
+    </script>
+
+</body>
+
+</html>

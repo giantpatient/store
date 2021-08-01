@@ -1,0 +1,36 @@
+.btn-shell{
+    display: flex;
+   
+    justify-content: space-between;
+}
+.policies{
+    width: 85%;
+    margin: auto;
+    .policy{
+        margin: 10px auto;
+        border: 3px solid rgb(0, 22, 82);
+        border-radius: 3px;
+        padding: 10px;
+    }
+}
+.policyTitle{
+    font-size: 1.8rem;
+    color: rgb(0, 19, 83);
+}
+#headding{
+    font-size: 3rem;
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+}
+.collapsible{
+    background: transparent;
+    border: 2px solid rgb(0, 21, 59);
+    color: rgb(0, 21, 59);
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 2.5rem;
+}
+.content p{
+    font-size: 1.4rem;
+}

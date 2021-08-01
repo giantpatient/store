@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <link rel="stylesheet" href="css/promotions.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="promotion-form">
+        <label for='promoType'>Promotion type:</label>
+        <select id='promoType' class="select-offer" name='promoType' required>
+            <option value='1G1' name='1G1'>Buy 1 get 1 free</option>
+            <option value='2G1' name='2G1'>Buy 2 get 1 free</option>
+            <option value='3G1' name='3G1'>Buy 3 get 1 free</option>
+            <option value='10OFF' name='10OFF'>10% discount</option>
+            <option value='15OFF' name='15OFF'>15% discount</option>
+            <option value='20OFF' name='20OFF'>20% discount</option>
+            <option value='25OFF' name='25OFF'>25% discount</option>
+            <option value='30OFF' name='30OFF'>30% discount</option>
+            <option value='35OFF' name='35OFF'>35% discount</option>
+            <option value='40OFF' name='40OFF'>40% discount</option>
+            <option value='45OFF' name='45OFF'>45% discount</option>
+            <option value='50OFF' name='50OFF'>50% discount</option>
+            <option value='55OFF' name='55OFF'>55% discount</option>
+            <option value='60OFF' name='60OFF'>60% discount</option>
+            <option value='65OFF' name='65OFF'>65% discount</option>
+            <option value='70OFF' name='70OFF'>70% discount</option>
+            <option value='75OFF' name='75OFF'>75% discount</option>
+            <option value='80OFF' name='80OFF'>80% discount</option>
+            <option value='85OFF' name='85OFF'>85% discount</option>
+            <option value='90OFF' name='90OFF'>90% discount</option>
+        </select>
+
+        <label>On:</label>
+        <select id='on' class="select-offer" onchange='fetchItems(this.value)' required>
+            <option value='all' name='all'>All items</option>
+            <option value='category' name='category'>Some categories</option>
+            <option value='items' name='items'>Some items</option>
+        </select>
+
+        <button type='button' id='itemsBtn' class='itemsBtn' onclick='showItems()'>Show items</button>
+        <div id='ids'>
+
+
+        </div>
+        <div class="public-privacy">
+            <label>Promo privacy:</label>
+
+            <input type="radio" id="public" name="privacy" value="public" onclick='checkPrivacy(this.id)'>
+            <label for="public">Public</label>
+            <input type="radio" id="private" name="privacy" value="private" onclick='checkPrivacy(this.id)'>
+            <label for="private">Private</label>
+        </div>
+
+
+        <label for='validFrom'>Valid from:</label>
+        <select id='validFrom' class="select-offer" required>
+            <option value='today'>Today</option>
+            <option value='tomorrow'>Tomorrow</option>
+        </select>
+
+        <label for='validTo'>Valid to:</label>
+        <select id='validTo' class="select-offer" required>
+            <option value='same'>Same day</option>
+            <option value='1'>1 day</option>
+            <option value='2'>2 days</option>
+            <option value='3'>3 days</option>
+            <option value='4'>4 days</option>
+            <option value='5'>5 days</option>
+            <option value='6'>6 days</option>
+            <option value='7'>7 days</option>
+            <option value='8'>8 days</option>
+            <option value='9'>9 days</option>
+            <option value='10'>10 days</option>
+            <option value='11'>11 days</option>
+            <option value='12'>12 days</option>
+            <option value='13'>13 days</option>
+            <option value='14'>14 days</option>
+            <option value='15'>15 days</option>
+            <option value='16'>16 days</option>
+            <option value='17'>17 days</option>
+            <option value='18'>18 days</option>
+            <option value='19'>19 days</option>
+            <option value='20'>20 days</option>
+            <option value='21'>21 days</option>
+            <option value='22'>22 days</option>
+            <option value='23'>23 days</option>
+            <option value='24'>24 days</option>
+            <option value='25'>25 days</option>
+            <option value='26'>26 days</option>
+            <option value='27'>27 days</option>
+            <option value='28'>28 days</option>
+            <option value='29'>29 days</option>
+            <option value='30'>30 days</option>
+        </select>
+
+        <label>Promo days: </label>
+        <select class="select-offer" id='promoDays'>
+
+            <option value='ALL'>All days</option>
+            <option value='0'>Sundays</option>
+            <option value='1'>Mondays</option>
+            <option value='2'>Tuesdays</option>
+            <option value='3'>Wednesdays</option>
+            <option value='4'>Thursdays</option>
+            <option value='5'>Fridays</option>
+            <option value='6'>Saturdays</option>
+
+
+        </select>
+
+
+        <label for='code' class='promoCode'>Promo code:</label>
+        <input type='text' class='promoCode' id='promoCode' maxlength='10' minlength='2'>
+        <button type='button' id='submitBtn' class='itemsBtn' onclick='submitPromos()'>Submit</button>
+    </div>
+
+
+    <br>
+    <br>
+
+    <div id='promoHistory' style="overflow:auto;">
+
+        <table class="table" id="promoTable">
+
+            <tr>
+                <th>Promo Type</th>
+                <th>On</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Promo Days</th>
+                <th>Privacy</th>
+                <th>Promo Code</th>
+                <th>Status</th>
+                <th>Remove</th>
+            </tr>
+
+
+            <tr>
+                <td>1G1</td>
+                <td>All items</td>
+                <td>2021-07-14</td>
+                <td>2021-07-14</td>
+                <td>All days</td>
+                <td>public</td>
+                <td>none</td>
+                <td>active</td>
+                <td>
+                    <button type="button" class="btn" id="2cd811b9" onclick="deletePromo(this.id)">x</button>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>45OFF</td>
+                <td>All items</td>
+                <td>2021-07-14</td>
+                <td>2021-07-18</td>
+                <td>Mondays</td>
+                <td>public</td>
+                <td>none</td>
+                <td>active</td>
+                <td>
+                    <button type="button" class="btn" id="3dd9b939" onclick="deletePromo(this.id)">x</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div id="EditAddOns" class="addOn-popup">
+        <button type="button" class="close" onclick="closeItems()">x</button>
+        <form class="addOnForm" id="EditaddOnForm">
+            <div id="EditAddOnsDiv">
+                <br>
+
+                <label id="c8f28b5fi">burger</label>
+                <input type="checkbox" class="checkboxCat" id="c8f28b5f" name="burger">
+
+                <div class="AddOns" id="c8f28b5fx">
+
+                </div>
+                <br>
+
+                <label id="26a70f52i">testingFuck</label>
+                <input type="checkbox" class="checkboxCat" id="26a70f52" name="testingFuck">
+
+                <div class="AddOns" id="26a70f52x">
+
+                </div>
+                <br>
+
+                <label id="13d0343ei">hoho</label>
+                <input type="checkbox" class="checkboxCat" id="13d0343e" name="hoho">
+
+                <div class="AddOns" id="13d0343ex">
+
+                </div>
+                <br>
+
+                <label id="b1623d95i">Shawarma</label>
+                <input type="checkbox" class="checkboxCat" id="b1623d95" name="Shawarma">
+
+                <div class="AddOns" id="b1623d95x">
+
+                </div>
+                <br>
+
+                <label id="f29f5855i">Mains</label>
+                <input type="checkbox" class="checkboxCat" id="f29f5855" name="Mains">
+
+                <div class="AddOns" id="f29f5855x">
+
+                </div>
+                <br>
+
+                <label id="8db16edbi">Starters</label>
+                <input type="checkbox" class="checkboxCat" id="8db16edb" name="Starters">
+
+                <div class="AddOns" id="8db16edbx">
+
+                </div>
+                <br>
+
+                <label id="f05c5d3ei">Desserts</label>
+                <input type="checkbox" class="checkboxCat" id="f05c5d3e" name="Desserts">
+
+                <div class="AddOns" id="f05c5d3ex">
+
+                </div>
+                <br>
+
+                <label id="7c9eae21i">Beverages</label>
+                <input type="checkbox" class="checkboxCat" id="7c9eae21" name="Beverages">
+
+                <div class="AddOns" id="7c9eae21x">
+
+                </div><br>
+
+                <label id="ffed3687i">Burgers</label>
+                <input type="checkbox" class="checkboxCat" id="ffed3687" name="Burgers">
+
+                <div class="AddOns" id="ffed3687x">
+
+                </div>
+                <br>
+
+                <label id="c9e74ef5i">vodka</label>
+                <input type="checkbox" class="checkboxCat" id="c9e74ef5" name="vodka">
+
+                <div class="AddOns" id="c9e74ef5x">
+
+                </div>
+            </div>
+            <br><br>
+            <button type="button" class="btn" onclick="PassEditedAddOns()" id="myBtn3">Confirm</button>
+
+        </form>
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+    <script src="script/navbar.js"></script>
+    <script src="script/promotions.js"></script>
+</body>
+
+</html>

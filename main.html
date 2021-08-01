@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar-regular.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div>
+                <img class="logo" src="images/logo2.svg" alt="">
+                <!-- <a href="#" class="nav-logo">
+                    Volvo
+                </a> -->
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Today's orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/menu.html" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/reviews.html" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <p onclick="myFunction()" class="dropbtn">Reservation ▼</p>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a class="nav-link" href="/reservations.html">Reservation</a>
+                            <a class="nav-link" href="/reservationhistory.html">Reservation History</a>
+                            <a class="nav-link" href="/reservationreview.html">Reservation Reviews</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/CAH.html" class="nav-link">Cook at Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/settings.html" class="nav-link">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/addons.html" class="nav-link">Add-ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/promotions.html" class="nav-link">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/drivers.html" class="nav-link">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderhistory.html" class="nav-link">Order History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/analytics.html" class="nav-link">Analytics</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <center>
+        <button id="statusBtn" class="statusBtn" onclick="openPrompt()" value="off/on">Start trading</button>
+
+    </center>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="closeIt" id="span" type="button" onclick="Cancel()">&times;</button>
+
+            <label>Current status: </label>
+            <label id="workingStatus"></label>
+            <input type="hidden" value="" id='partnerStatus' name=''>
+            <br>
+            <br>
+            <input type="checkbox" id="checkbox1" onclick="checkbox1(this.name)" name=''>
+            <label for="checkbox1" id="checkbox1label">Start/Stop Trading</label>
+            <br>
+            <input type="checkbox" id="checkbox2" onclick="checkbox2()" name='off'>
+            <label for="checkbox2" id="checkbox2label">Disable automatic stopping until: </label>
+            <select id="until" style="display: inline;">
+                <option value="23:30" data-day="same">11:30 PM</option>
+                <option value="00:00" data-day="next">12:00 AM</option>
+                <option value="00:30" data-day="next">12:30 AM</option>
+                <option value="01:00" data-day="next">1:00 AM</option>
+                <option value="01:30" data-day="next">1:30 AM</option>
+                <option value="02:00" data-day="next">2:00 AM</option>
+                <option value="02:30" data-day="next">2:30 AM</option>
+                <option value="03:00" data-day="next">3:00 AM</option>
+                <option value="03:30" data-day="next">3:30 AM</option>
+                <option value="04:00" data-day="next">4:00 AM</option>
+                <option value="04:30" data-day="next">4:30 AM</option>
+                <option value="05:00" data-day="next">5:00 AM</option>
+                <option value="05:30" data-day="next">5:30 AM</option>
+                <option value="06:00" data-day="next">6:00 AM</option>
+                <option value="06:30" data-day="next">6:30 AM</option>
+                <option value="07:00" data-day="next">7:00 AM</option>
+                <option value="07:30" data-day="next">7:30 AM</option>
+                <option value="08:00" data-day="next">8:00 AM</option>
+                <option value="08:30" data-day="next">8:30 AM</option>
+                <option value="09:00" data-day="next">9:00 AM</option>
+                <option value="09:30" data-day="next">9:30 AM</option>
+                <option value="10:00" data-day="next">10:00 AM</option>
+                <option value="10:30" data-day="next">10:30 AM</option>
+                <option value="11:00" data-day="next">11:00 AM</option>
+                <option value="11:30" data-day="next">11:30 AM</option>
+                <option value="12:00" data-day="next">12:00 PM</option>
+                <option value="12:30" data-day="next">12:30 PM</option>
+                <option value="13:00" data-day="next">1:00 PM</option>
+                <option value="13:30" data-day="next">1:30 PM</option>
+                <option value="14:00" data-day="next">2:00 PM</option>
+                <option value="14:30" data-day="next">2:30 PM</option>
+                <option value="15:00" data-day="next">3:00 PM</option>
+                <option value="15:30" data-day="next">3:30 PM</option>
+                <option value="16:00" data-day="next">4:00 PM</option>
+                <option value="16:30" data-day="next">4:30 PM</option>
+                <option value="17:00" data-day="next">5:00 PM</option>
+                <option value="17:30" data-day="next">5:30 PM</option>
+                <option value="18:00" data-day="next">6:00 PM</option>
+                <option value="18:30" data-day="next">6:30 PM</option>
+                <option value="19:00" data-day="next">7:00 PM</option>
+                <option value="19:30" data-day="next">7:30 PM</option>
+                <option value="20:00" data-day="next">8:00 PM</option>
+                <option value="20:30" data-day="next">8:30 PM</option>
+                <option value="21:00" data-day="next">9:00 PM</option>
+                <option value="21:30" data-day="next">9:30 PM</option>
+                <option value="22:00" data-day="next">10:00 PM</option>
+                <option value="22:30" data-day="next">10:30 PM</option>
+                <option value="23:00" data-day="next">11:00 PM</option>
+            </select>
+            <br>
+            <input type="checkbox" id="checkbox3" onclick="checkbox3(this.name)" name='notBusy'>
+            <label for="checkbox3" id="checkbox3label">Busy?/Not Busy?</label>
+            <br>
+            <div id='busyDiv'>
+                <label>Average delay: </label>
+                <select id="delay" name='delay'>
+                    <option value='10'>10 Mins</option>
+                    <option value='15'>15 Mins</option>
+                    <option value='20'>20 Mins</option>
+                    <option value='30'>30 Mins</option>
+                    <option value='40'>40 Mins</option>
+                    <option value='45'>45 Mins</option>
+                    <option value='50'>50 Mins</option>
+                    <option value='60'>60 Mins</option>
+                    <option value='70'>70 Mins</option>
+                    <option value='75'>75 Mins</option>
+                    <option value='80'>80 Mins</option>
+                    <option value='90'>90 Mins</option>
+                    <option value='100'>100 Mins</option>
+                    <option value='110'>110 Mins</option>
+                    <option value='120'>120 Mins</option>
+                </select>
+            </div>
+
+            <br>
+            <div id='busyDiv2'>
+                <label> Current delay is: </label>
+                <label id='currentDelay'>15 Mins</label>
+            </div>
+            <br>
+            <label id='closingLabel1'>Nearest closing time: </label>
+            <label id='closingLabel2'> 11:30 pm</label>
+            <br><br>
+            <button type="button" onclick="updateStatus()">Confirm</button>
+        </div>
+
+    </div>
+
+    <div id="logOutModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="closeIt" id="span" type="button" onclick="CancelLogOut()">&times;</button>
+
+            <label>Log out of:</label>
+            <input type="radio" id="all" name="choice" value="all">
+            <label for="all">All devices</label><br>
+            <input type="radio" id="this" name="choice" value="this" checked>
+            <label for="this">This device</label><br>
+
+
+            <button type='button' onclick='signOut()'>Sign out</button>
+        </div>
+
+    </div>
+
+    <div class="addItem-popup" id="myForm">
+
+        <!--START-->
+
+        <div class="form-container">
+            <button type="button" class="closeIt" onclick="closeForm()">&times;</button>
+
+            <div id="recieptDiv">
+
+                <div id="headerDiv">
+                    <label>Cash</label>
+                    <br>
+                    <label>Order date: 21 June 2021</label>
+                    <br>
+                    <label>Order time: 21:55</label>
+                    <br>
+                    <label>ASAP</label>
+                    <br>
+                </div>
+
+                <div id="addressDiv">
+                    House: Ryt
+                    Road: Rut
+                    Block: 608
+                    Area: Arad
+                    Notes: none
+                </div>
+
+                <br><br><br>
+
+                <div id="itemsDiv">
+                    <div class="item">
+                        <label class="quantity">Quantity: 2</label>
+                        <br>
+                        <label class="title">Item: check22</label>
+                        <br>
+                        <label class="subTitle">add-ons: hola1 (BD 0.100) | hola2 (BD 0.100) | Spicy (BD 0.200)</label>
+                        <br>
+                        <label class="itemNotes">Notes: </label>
+                        <br>
+                        <label class="itemNotes">Promo: none</label>
+                        <br>
+                        <label class="detail">BD 18.800</label>
+                        <br>
+                    </div>
+                    <div class="item">
+                        <label class="quantity">Quantity: 1</label>
+                        <br>
+                        <label class="title">Item: dfghjkl ( C.A.H )</label>
+                        <label class="subTitle"></label>
+                        <br>
+                        <label class="itemNotes">Notes: </label>
+                        <br>
+                        <label class="itemNotes">Promo: none</label>
+                        <label class="detail">BD 8.000</label>
+                        <br>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div id="totalDiv">
+                    <label class="title">Cart subtotal: </label>
+                    <label class="detail">BD 26.800</label>
+                    <br>
+                    <label class="title">Cart discount: </label>
+                    <label class="detail">- BD 0.000</label>
+                    <br>
+                    <label class="title">Cart total</label>
+                    <label class="detail">BD 26.800</label>
+                    <br>
+                    <label class="title">Delivery: </label>
+                    <label class="detail">+ BD 1.300</label>
+                    <br>
+                    <label class="title">Total: </label>
+                    <label class="detail">BD 28.100</label>
+                </div>
+
+            </div>
+
+            <br><br><br>
+
+            <button class="statusBtn" onclick='printReceipt()'>Print</button>
+
+            <br>
+
+            <button name='${pendingOrdersArray[i].OrderID}' class='pendingAction' onclick='cancelOrder(this.name)'
+                id='rejectOrderBtn'>x</button><label class='pendingAction'> / </label><button
+                name='${pendingOrdersArray[i].OrderID}' class='pendingAction' onclick='acceptOrder(this.name)'
+                id='acceptOrderBtn'>✓</button>
+        </div>
+
+    </div>
+
+    <div id='issueOrders' class='tableDiv'>
+
+
+    </div>
+
+    <div id="orderRequests" class="tableDiv">
+        <label>Order requests</label>
+        <div class="table-container">
+            <table id="orderRequestsTable">
+                <tbody>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Placed on</th>
+                        <th>Pickup time</th>
+                        <th>Order type</th>
+                        <th>Customer name</th>
+                        <th>Customer phone</th>
+                        <th>Customer address</th>
+                        <th>Cutlery</th>
+                        <th>Payment</th>
+                        <th>Prepaid</th>
+                        <th>Subtotal</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th>Order</th>
+                        <th>Accept / Reject</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>21BE0B82</td>
+                        <td>23:33 11 July 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 0000000</td>
+                        <td>Office: 415 Floor: 4 Building: 9182 Road: 456 Area: Saar Notes: Please do not ring the bell
+                        </td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 5.400</td>
+                        <td>BD 0.000</td>
+                        <td>BD 6.900</td>
+                        <td><button name="21BE0B82" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                        <td><button name="21BE0B82" class="pendingAction" onclick="cancelOrder(this.name)">x</button>
+                            <label class="pendingAction"> / </label>
+                            <button name="21BE0B82" class="pendingAction" onclick="acceptOrder(this.name)">✓</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="pendingOrders" class="tableDiv">
+        <label>Pending orders</label>
+        <div class="table-container">
+            <table id="pendingOrdersTable">
+                <tbody>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Status</th>
+                        <th>Placed on</th>
+                        <th>Pickup time</th>
+                        <th>Order type</th>
+                        <th>Customer name</th>
+                        <th>Customer phone</th>
+                        <th>Customer address</th>
+                        <th>Cutlery</th>
+                        <th>Payment</th>
+                        <th>Prepaid</th>
+                        <th>Subtotal</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th>Order</th>
+                        <th>Mark as ready / Cancel</th>
+                        <th>Assign to driver</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>21BE0B82</td>
+                        <td>Placed</td>
+                        <td>23:33 11 July 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 34565432</td>
+                        <td>Office: 415 Floor: 4 Building: 9182 Road: 456 Area: Saar Notes: Please do not ring the bell
+                        </td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 5.400</td>
+                        <td>BD 0.000</td>
+                        <td>BD 6.900</td>
+                        <td>
+                            <button name="21BE0B82" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                        <td>
+                            <button name="21BE0B82" class="pendingAction" onclick="cancelOrder(this.name)">x</button>
+                            <label class="pendingAction"> / </label>
+                            <button name="21BE0B82" class="pendingAction" onclick="readyOrder(this.name)">✓</button>
+                        </td>
+                        <td>
+                            <button name="21BE0B82" class="statusBtn"
+                                onclick="openDriverPopUp(this.name)">Assign</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="readyOrders" class="tableDiv">
+        <label>Orders ready for delivery / pickup</label>
+        <label>N/A</label>
+    </div>
+
+    <div id="completedOrders" class="tableDiv">
+        <label>Completed orders</label>
+        <div class="table-container">
+            <table id="completedOrdersTable">
+                <tbody>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Status</th>
+                        <th>Placed on</th>
+                        <th>Pickup time</th>
+                        <th>Order type</th>
+                        <th>Customer name</th>
+                        <th>Customer phone</th>
+                        <th>Customer address</th>
+                        <th>Cutlery</th>
+                        <th>Payment</th>
+                        <th>Prepaid</th>
+                        <th>Subtotal</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th>Order</th>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>F4C23176</td>
+                        <td>Delivered</td>
+                        <td>00:29 20 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 0000000</td>
+                        <td>House: Ryt Road: Rut Block: 608 Area: Arad Notes: none</td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.500</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.300</td>
+                        <td><button name="F4C23176" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>104B2CAB</td>
+                        <td>Delivered</td>
+                        <td>00:30 20 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 0000000</td>
+                        <td>House: Ryt Road: Rut
+                            Block: 608
+                            Area: Arad Notes: none</td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.500</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.300</td>
+                        <td>
+                            <button name="104B2CAB" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7DEA7072</td>
+                        <td>Collected</td>
+                        <td>00:30 20 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Pickup</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 09876545</td>
+                        <td>NA</td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.500</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.300</td>
+                        <td>
+                            <button name="7DEA7072" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>19A9A4D8</td>
+                        <td>Collected</td>
+                        <td>00:30 20 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Pickup</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 39265662</td>
+                        <td>NA</td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.500</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.300</td>
+                        <td>
+                            <button name="19A9A4D8" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FE952154</td>
+                        <td>Delivered</td>
+                        <td>00:30 20 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 39265662</td>
+                        <td>House: Ryt
+                            Road: Rut
+                            Block: 608
+                            Area: Arad Notes: none
+                        </td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.500</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.300</td>
+                        <td>
+                            <button name="FE952154" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6B438565</td>
+                        <td>Collected</td>
+                        <td>02:22 21 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Pickup</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 09876549</td>
+                        <td>NA</td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 14.400</td>
+                        <td>BD 0.000</td>
+                        <td>BD 14.400</td>
+                        <td>
+                            <button name="6B438565" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D1205479</td>
+                        <td>Delivered</td>
+                        <td>20:07 26 June 2021</td>
+                        <td>ASAP</td>
+                        <td>Delivery</td>
+                        <td>Mohamed Jaffer</td>
+                        <td>+973 09876544</td>
+                        <td>House: 3106
+                            Road: 452
+                            Block: 604
+                            Area: Sitra Al Qaryah Notes: none
+                        </td>
+                        <td>NO</td>
+                        <td>Cash</td>
+                        <td>NO</td>
+                        <td>BD 4.400</td>
+                        <td>BD 0.000</td>
+                        <td>BD 5.200</td>
+                        <td>
+                            <button name="D1205479" class="statusBtn" onclick="viewOrder(this.name)">View order</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="driverModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button class="closeIt" id="span2" type="button" onclick="CancelAssignDriver()">&times;</button>
+
+            <label>Assign order to:</label>
+
+            <div id='driversDiv'>
+
+
+                <select id="driverSelect">
+                    <option value='pool'>Drivers pool</option>
+                </select>
+
+
+
+            </div>
+
+            <button type="button" name='' id='assignDriverBtn' onclick="assignDriverToOrder(this.name)">Confirm</button>
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+
+
+
+    <script src="script/main.js"></script>
+    <script src="script/navbar.js"></script>
+</body>
+
+</html>

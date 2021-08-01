@@ -1,0 +1,50 @@
+.btn-shell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.policies {
+  width: 85%;
+  margin: auto;
+}
+
+.policies .policy {
+  margin: 10px auto;
+  border: 3px solid #001652;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.policyTitle {
+  font-size: 1.8rem;
+  color: #001353;
+}
+
+#headding {
+  font-size: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.collapsible {
+  background: transparent;
+  border: 2px solid #00153b;
+  color: #00153b;
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 2.5rem;
+}
+
+.content p {
+  font-size: 1.4rem;
+}
+/*# sourceMappingURL=faq.css.map */

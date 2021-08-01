@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/psignup2.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    
+    <a class="back" href="">Back</a>
+    <h1 class="signtitle">Signup Here</h1>
+    <form class="master-form">
+        <div class="group-field">
+            <legend>Address:</legend>
+            <label for="Ename">Establishment name:</label>
+            <input type="text" id="Ename" name="Ename" required maxlength="40"><br>
+            <label for="flat">Flat / Office:</label>
+            <input type="text" id="flat" name="flat" maxlength="30"><br>
+            <label for="building">Building:</label>
+            <input type="text" id="building" name="building" required maxlength="30"><br>
+            <label for="road">Street / Road:</label>
+            <input type="text" id="road" name="road" required maxlength="30"><br>
+            <label for="block">Postcode / Block:</label>
+            <input type="text" id="block" name="block" required maxlength="30"><br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required maxlength="30"><br>
+
+            <!-- do not forget to get the country list from the database which is provided by admin  -->
+            <label for="country">Country:</label>
+            <select id="country" name="country" required onchange="currency()">
+                <option value="bahrain">Bahrain</option>
+                <option value="saudi">Saudi Arabia</option>
+                <option value="kuwait">Kuwait</option>
+                <option value="uae">UAE</option>
+                <option value="oman">Oman</option>
+                <option value="qatar">Qatar</option>
+            </select>
+        </div>
+
+        <br>
+        <!--add ? button for info on CR -->
+        <div class="group-field">
+            <legend>Branch Details:</legend>
+            <label for="cr">CR:</label>
+            <input type="text" id="cr" name="cr" required maxlength="30"><br>
+            <label for="bphone">Branch telephone:</label>
+            <select id="ccode" name="ccode" required>
+                <option value="+973">+973</option>
+                <option value="+966">+966</option>
+                <option value="+965">+965</option>
+                <option value="+971">+971</option>
+                <option value="+968">+968</option>
+                <option value="+974">+974</option>
+            </select>
+            <input type="number" id="bphone" name="bphone" required maxlength="14" pattern="\d*"><br>
+            <label for="bemail">Branch Email:</label>
+            <input type="email" id="bemail" name="bemail" required maxlength="40" onkeyup="emailCheck()"> <br>
+            <label for="vbemail">Verify Email:</label>
+            <input type="email" id="vbemail" name="vbemail" required maxlength="40" onkeyup="emailCheck()">
+            <span id='emessage'></span><br>
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="pass" required minlength="8" maxlength="35"
+                onkeyup="passCheck()"><br>
+            <label for="vpass">Verify Password:</label>
+            <input type="password" id="vpass" name="vpass" required minlength="8" maxlength="35" onkeyup="passCheck()">
+            <span id='message'></span><br>
+            <!-- get this from the database which is posted and activated by admin (for each country seperatly)
+
+and make this look like the drawing on PAGE #2 with CSS or JS-->
+            <label for="etype">Establishment type:</label>
+            <select id="etype" name="etype" onchange="notRest()" required>
+                <option value="restaurant">Restaurant</option>
+                <option value="grocery">Grocery Store</option>
+                <option value="flowers">Florist</option>
+                <option value="pet">Pet Store</option>
+                <option value="supplement">Supplement Store</option>
+                <option value="beauty">Beauty Store</option>
+                <option value="electronics">Electronics</option>
+                <option value="perfumes">Fragrance Store</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div class="group-field">
+            <legend>Person of Contact:</legend>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" required maxlength="20" pattern="[A-Za-z]{2,20}"><br>
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" required maxlength="20" pattern="[A-Za-z]{2,20}"><br>
+            <label for="pemail">Email:</label>
+            <input type="email" id="pemail" name="pemail" required maxlength="40"><br>
+            <label for="pphone">Phone:</label>
+            <select id="pccode" name="pccode" required>
+                <option value="+973">+973</option>
+                <option value="+966">+966</option>
+                <option value="+965">+965</option>
+                <option value="+971">+971</option>
+                <option value="+968">+968</option>
+                <option value="+974">+974</option>
+            </select>
+            <input type="number" id="pphone" name="pphone" required maxlength="15" pattern="\d*"><br>
+        </div>
+
+        <br>
+
+        <!--make sure the country code matches the country-->
+
+
+        <label for="cuisines" class="label">Cuisines:</label>
+        <select name="cuisines[]" id="cuisines">
+            <option value="american">American</option>
+            <option value="arabic">Arabic</option>
+            <option value="asian">Asian</option>
+            <option value="bahraini">Bahraini</option>
+            <option value="brazilian">Brazilian</option>
+            <option value="breakfast">Breakfast and brunch</option>
+            <option value="burger">Burger</option>
+            <option value="cafe">Cafe</option>
+            <option value="chinese">Chinese</option>
+            <option value="dessert">Dessert</option>
+            <option value="doner">Doner</option>
+            <option value="egyptian">Egyptian</option>
+            <option value="european">European</option>
+            <option value="fast">Fast Food</option>
+            <option value="frozen">Frozen Yogurt</option>
+            <option value="grills">Grills</option>
+            <option value="healthy">Healthy Food</option>
+            <option value="indian">Indian</option>
+            <option value="international">International</option>
+            <option value="italian">Italian</option>
+            <option value="japanese">Japanese</option>
+            <option value="juice">Juice</option>
+            <option value="lebanese">Lebanese</option>
+            <option value="mexican">Mexican</option>
+            <option value="persian">Middle Eastern</option>
+            <option value="pakistani">Pakistani</option>
+            <option value="persian">Persian</option>
+            <option value="pizza">Pizza</option>
+            <option value="sandwiches">Sandwiches</option>
+            <option value="seafood">Seafood</option>
+            <option value="shawarma">Shawarma</option>
+            <option value="thai">Thai</option>
+            <option value="turkish">Turkish</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="grocery">Grocery Store</option>
+            <option value="flowers">Florist</option>
+            <option value="pet">Pet Store</option>
+            <option value="supplement">Supplement Store</option>
+            <option value="beauty">Beauty Store</option>
+            <option value="electronics">Electronics</option>
+            <option value="perfumes">Fragrance Store</option>
+        </select>
+
+        <!-- see if you can add multiple times per day for places that close and reopen during the day -->
+
+        <br><br>
+
+        <!--add a disable option for each day in case the place doesnt open during specific days -->
+        <div class="group-field">
+            <legend>Working Hours:</legend>
+
+            <div class="group-field">
+                <legend id="sunday">Sunday</legend>
+
+                <input type="hidden" id="sunday" name="hours[1][0]" value="sunday">
+                <label for="suno1">Opening time:</label>
+                <input type="time" id="suno1" name="hours[1][1]"><br>
+                <label for="sunc1">Closing time:</label>
+                <input type="time" id="sunc1" name="hours[1][2]"><br>
+
+                <p>And</p>
+
+                <label for="suno2">Opening time:</label>
+                <input type="time" id="suno2" name="hours[1][3]"><br>
+                <label for="sunc2">Closing time:</label>
+                <input type="time" id="sunc2" name="hours[1][4]"><br>
+
+                <p>And</p>
+
+                <label for="suno3">Opening time:</label>
+                <input type="time" id="suno3" name="hours[1][5]"><br>
+                <label for="sunc3">Closing time:</label>
+                <input type="time" id="sunc3" name="hours[1][6]"><br>
+
+            </div>
+            <br>
+
+            <div class="group-field">
+                <legend>Monday</legend>
+                <input type="hidden" id="monday" name="hours[2][0]" value="monday">
+
+                <label for="mono1">Opening time:</label>
+                <input type="time" id="mono1" name="hours[2][1]"><br>
+                <label for="monc1">Closing time:</label>
+                <input type="time" id="monc1" name="hours[2][2]"><br>
+
+                <p>And</p>
+
+                <label for="mono2">Opening time:</label>
+                <input type="time" id="mono2" name="hours[2][3]"><br>
+                <label for="monc2">Closing time:</label>
+                <input type="time" id="monc2" name="hours[2][4]"><br>
+
+                <p>And</p>
+
+                <label for="mono3">Opening time:</label>
+                <input type="time" id="mono3" name="hours[2][5]"><br>
+                <label for="monc3">Closing time:</label>
+                <input type="time" id="monc3" name="hours[2][6]"><br>
+
+            </div>
+
+            <br>
+
+            <div class="group-field">
+                <legend>Tuesday</legend>
+
+                <input type="hidden" id="tuesday" name="hours[3][0]" value="tuesday">
+
+                <label for="tueo1">Opening time:</label>
+                <input type="time" id="tueo1" name="hours[3][1]"><br>
+                <label for="tuec1">Closing time:</label>
+                <input type="time" id="tuec1" name="hours[3][2]"><br>
+
+                <p>And</p>
+
+                <label for="tueo2">Opening time:</label>
+                <input type="time" id="tueo2" name="hours[3][3]"><br>
+                <label for="tuec2">Closing time:</label>
+                <input type="time" id="tuec2" name="hours[3][4]"><br>
+
+                <p>And</p>
+
+                <label for="tueo3">Opening time:</label>
+                <input type="time" id="tueo3" name="hours[3][5]"><br>
+                <label for="tuec3">Closing time:</label>
+                <input type="time" id="tuec3" name="hours[3][6]"><br>
+            </div>
+            <br>
+
+            <div class="group-field">
+                <legend>Wednesday</legend>
+
+                <input type="hidden" id="wednesday" name="hours[4][0]" value="wednesday">
+
+                <label for="wedo1">Opening time:</label>
+                <input type="time" id="wedo1" name="hours[4][1]"><br>
+                <label for="wedc1">Closing time:</label>
+                <input type="time" id="wedc1" name="hours[4][2]"><br>
+
+                <p>And</p>
+
+                <label for="wedo2">Opening time:</label>
+                <input type="time" id="wedo2" name="hours[4][3]"><br>
+                <label for="wedc2">Closing time:</label>
+                <input type="time" id="wedc2" name="hours[4][4]"><br>
+
+                <p>And</p>
+
+                <label for="wedo3">Opening time:</label>
+                <input type="time" id="wedo3" name="hours[4][5]"><br>
+                <label for="wedc3">Closing time:</label>
+                <input type="time" id="wedc3" name="hours[4][6]"><br>
+
+            </div>
+            <br>
+
+            <div class="group-field">
+                <legend>Thursday</legend>
+                <input type="hidden" id="thursday" name="hours[5][0]" value="thursday">
+
+                <label for="thuo1">Opening time:</label>
+                <input type="time" id="thuo1" name="hours[5][1]"><br>
+                <label for="thuc1">Closing time:</label>
+                <input type="time" id="thuc1" name="hours[5][2]"><br>
+
+                <p>And</p>
+
+                <label for="thuo2">Opening time:</label>
+                <input type="time" id="thuo2" name="hours[5][3]"><br>
+                <label for="thuc2">Closing time:</label>
+                <input type="time" id="thuc2" name="hours[5][4]"><br>
+
+                <p>And</p>
+
+                <label for="thuo3">Opening time:</label>
+                <input type="time" id="thuo3" name="hours[5][5]"><br>
+                <label for="thuc3">Closing time:</label>
+                <input type="time" id="thuc3" name="hours[5][6]"><br>
+            </div>
+            <br>
+
+            <div class="group-field">
+                <legend>Friday</legend>
+
+                <input type="hidden" id="friday" name="hours[6][0]" value="friday">
+
+                <label for="frio1">Opening time:</label>
+                <input type="time" id="frio1" name="hours[6][1]"><br>
+                <label for="fric1">Closing time:</label>
+                <input type="time" id="fric1" name="hours[6][2]"><br>
+
+                <p>And</p>
+
+                <label for="frio2">Opening time:</label>
+                <input type="time" id="frio2" name="hours[6][3]"><br>
+                <label for="fric2">Closing time:</label>
+                <input type="time" id="fric2" name="hours[6][4]"><br>
+
+                <p>And</p>
+
+                <label for="frio3">Opening time:</label>
+                <input type="time" id="frio3" name="hours[6][5]"><br>
+                <label for="fric3">Closing time:</label>
+                <input type="time" id="fric3" name="hours[6][6]"><br>
+            </div>
+            <br>
+
+            <div class="group-field">
+                <legend>Saturday</legend>
+
+                <input type="hidden" id="saturday" name="hours[7][0]" value="saturday">
+
+                <label for="sato1">Opening time:</label>
+                <input type="time" id="sato1" name="hours[7][1]"><br>
+                <label for="satc1">Closing time:</label>
+                <input type="time" id="satc1" name="hours[7][2]"><br>
+
+                <p>And</p>
+
+                <label for="sato2">Opening time:</label>
+                <input type="time" id="sato2" name="hours[7][3]"><br>
+                <label for="satc2">Closing time:</label>
+                <input type="time" id="satc2" name="hours[7][4]"><br>
+
+                <p>And</p>
+
+                <label for="sato3">Opening time:</label>
+                <input type="time" id="sato3" name="hours[7][5]"><br>
+                <label for="satc3">Closing time:</label>
+                <input type="time" id="satc3" name="hours[7][6]"><br>
+            </div>
+            <br>
+        </div>
+        <br><br>
+
+
+        <!-- add map here for office location-->
+        <p><b>Do not forget to add the map here</b></p>
+
+
+        <!-- see if you can place the partner name in the dropdown list-->
+        <label for="delivery">Who is going to be responsible for the delivery of your items?</label>
+        <select id="delivery" name="delivery" required>
+            <option value="partner">Yourself</option>
+            <option value="us">VOLO</option>
+        </select> <br><br>
+
+        <!-- Add delivery charge input field if the partner delivers the items-->
+        <p> <b>Distance for delivery (See if you can draw in map, only show if the restaurant delivers) and delivery
+                fee</b></p>
+        <div id="map"></div>
+        <div id="info"></div>
+
+        <input type="number" name="circle1" id="circle1" onchange="radius()">
+        <input type="number" name="circle1lat" id="circle1lat" step="0.00000000001">
+        <input type="number" name="circle1lng" id="circle1lng" step="0.00000000001">
+        <input type="number" name="circle2" id="circle2" onchange="radius()">
+        <input type="number" name="circle2lat" id="circle2lat" step="0.00000000001">
+        <input type="number" name="circle2lng" id="circle2lng" step="0.00000000001">
+        <input type="number" name="circle3" id="circle3" onchange="radius()">
+        <input type="number" name="circle3lat" id="circle3lat" step="0.00000000001">
+        <input type="number" name="circle3lng" id="circle3lng" step="0.00000000001">
+
+        <br>
+        <br>
+
+        <label for="price1">Short range delivery price:</label>
+        <input type="number" name="price1" id="price1" step="0.001" required>
+        <span class="currency">BHD</span><br><br>
+        <label for="price2">Medium range delivery price:</label>
+        <input type="number" name="price2" id="price2" step="0.001" required>
+        <span class="currency">BHD</span><br><br>
+        <label for="price3">Long range delivery price:</label>
+        <input type="number" name="price3" id="price3" step="0.001" required>
+        <span class="currency">BHD</span><br><br><br>
+
+        <!-- write a ? as an alert for each to show relevant information
+
+ONLY SHOW THE BELOW FORM IF THE PARTNER IS A RESTAURANT (EXCEPT PRE ORDERS)-->
+
+
+        <label for="bbq" class="label">Would you like to opt into our Cook at Home program?</label>
+        <select id="bbq" name="bbq">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+
+        <label for="waste" class="label">Would you like to opt into our food waste program?</label>
+        <select id="waste" name="waste">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+
+        <label for="reservation" class="label">Would you like to recieve reservations for dine in?</label>
+        <select id="reservation" name="reservation">
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+        <br>
+        <label for="pre">Would you like to recieve pre-orders?</label>
+        <select id="pre" name="pre" required>
+            <option value="n">No</option>
+            <option value="y">Yes</option>
+        </select>
+
+        <br><br>
+        <!-- sales promocode should be run against the database to attribute this partner to the salesman-->
+        <label for="sales">Sales promo code:</label>
+        <input type="text" id="sales" name="sales" maxlength="20">
+        <br>
+        <label for="commission">Sales Commission:</label>
+        <input type="number" id="commission" name="commission" maxlength="6" step="0.0001">
+
+        <br>
+        <label for="img">Logo:</label><br><br>
+        <input type="file" id="img" name="img" accept="image/*">
+        <!-- upload logo here according to specific dimensions-->
+
+
+        <br><br>
+        <input type="submit" value="submit" name="submit" onclick="validate()">
+    </form>
+    <br>
+
+    <footer>
+        <div class="footer">
+            <div class="logo-name">
+                VOLO
+            </div>
+            <div class='links-nav'>
+                <ul>
+                    <li><a href="/contact.html">Contact us</a></li>
+                    <li><a href="/terms.html">Terms and Conditions</a></li>
+                    <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+                    <li><a href="/FAQ.html">FAQs</a></li>
+                </ul>
+            </div>
+
+
+            <div class='social-media'>
+                <ul>
+                    <li><a href="#"><img src="images/instagram.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/facebook.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="images/twitter.svg" alt=""></a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="copyright">
+            &copy Copyright 2021 All Rights Researved
+        </div>
+    </footer>
+
+</body>
+
+</html>
